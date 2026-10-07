@@ -5,57 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Powfolio roadmap</title>
 <style>
-  :root { --bg:#0b0b0c; --surface:#141618; --line:#2c3036; --text:#f4f4f3; --muted:#9aa0a8; --soft:#7b818a; --accent:#b8863b; --good:#55c895; --warn:#e0b15a; }
+  :root { --bg:#0b0b0c; --surface:#141618; --line:#2c3036; --text:#f4f4f3; --muted:#9aa0a8; --soft:#7b818a; --accent:#b8863b; --good:#55c895; }
   * { box-sizing: border-box; }
   body { margin:0; background:var(--bg); color:var(--text); font:15px/1.55 Inter, ui-sans-serif, system-ui, sans-serif; }
-  a { color:inherit; }
-  header { position:sticky; top:0; z-index:5; display:flex; justify-content:space-between; gap:16px; align-items:center; padding:14px 22px; background:rgba(11,11,12,.92); border-bottom:1px solid var(--line); backdrop-filter:blur(10px); }
-  .brand { font-weight:750; letter-spacing:-.03em; }
-  .brand span { color:var(--accent); }
-  nav { display:flex; gap:14px; overflow:auto; font-size:13px; color:var(--muted); }
-  nav button { border:0; background:transparent; color:inherit; cursor:pointer; padding:0; white-space:nowrap; }
+  header { position:sticky; top:0; z-index:5; display:flex; gap:16px; align-items:center; justify-content:space-between; padding:14px 18px; background:rgba(11,11,12,.94); border-bottom:1px solid var(--line); }
+  nav { display:flex; gap:12px; overflow:auto; }
+  nav button { border:0; background:transparent; color:var(--muted); cursor:pointer; white-space:nowrap; }
   nav button.on { color:var(--text); text-decoration:underline; text-underline-offset:4px; }
-  main { width:min(1080px, calc(100% - 32px)); margin:0 auto; padding:28px 0 80px; }
-  .kicker { color:var(--soft); letter-spacing:.16em; text-transform:uppercase; font-size:11px; font-weight:700; }
-  h1 { font-size:40px; line-height:1.05; letter-spacing:-.045em; margin:8px 0; }
-  h2 { font-size:22px; letter-spacing:-.03em; margin:0 0 8px; }
+  main { width:min(980px, calc(100% - 28px)); margin:0 auto; padding:24px 0 72px; }
+  h1 { font-size:34px; letter-spacing:-.04em; line-height:1.05; margin:8px 0; }
+  h2 { font-size:20px; margin:0 0 6px; }
   .muted { color:var(--muted); }
-  .grid { display:grid; grid-template-columns:1.3fr .7fr; gap:18px; }
-  .card { background:var(--surface); border-radius:16px; padding:16px; }
-  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:18px 0; }
-  .stat b { display:block; font-size:26px; letter-spacing:-.04em; }
-  .stat span { color:var(--soft); font-size:12px; }
-  .bar { height:8px; background:#23262b; border-radius:99px; overflow:hidden; }
-  .bar i { display:block; height:100%; background:var(--accent); }
-  .lanes { display:grid; gap:10px; margin-top:14px; }
-  .lane { display:grid; grid-template-columns:140px 1fr 42px; gap:10px; align-items:center; font-size:13px; }
-  .view { display:none; }
-  .view.on { display:block; }
-  .timeline { position:relative; margin-top:18px; }
-  .phase { display:grid; grid-template-columns:120px 1fr; gap:14px; padding:14px 0; border-top:1px solid var(--line); }
-  .phase button.done { width:18px; height:18px; border-radius:50%; border:1px solid var(--accent); background:transparent; color:var(--accent); }
-  .pill { display:inline-block; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); }
-  .tasks { display:grid; gap:8px; }
-  .task { display:flex; gap:10px; align-items:flex-start; padding:10px 0; border-bottom:1px solid #23262b; }
-  .task input { margin-top:4px; accent-color:var(--accent); }
+  .view { display:none; } .view.on { display:block; }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:16px 0; }
+  .stat, .card, .phase { background:var(--surface); border-radius:14px; padding:14px; }
+  .stat b { display:block; font-size:24px; }
+  .stat span, .kicker { color:var(--soft); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+  .lane { display:grid; grid-template-columns:150px 1fr 40px; gap:8px; align-items:center; margin:8px 0; font-size:13px; }
+  .bar { height:7px; background:#23262b; border-radius:99px; overflow:hidden; } .bar i { display:block; height:100%; background:var(--accent); }
+  .task { display:flex; gap:10px; padding:10px 0; border-bottom:1px solid #23262b; }
+  .task small { display:block; color:var(--soft); }
   .task.done span { color:var(--soft); text-decoration:line-through; }
-  .filters { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0; }
-  .filters button, .cadence button { border:0; background:#1b1e22; color:var(--text); border-radius:999px; padding:6px 10px; cursor:pointer; }
-  .filters button.on, .cadence button.on { color:#111; background:var(--accent); }
-  ol.steps { padding-left:18px; }
-  ol.steps li { margin:8px 0; }
-  .note { color:var(--soft); font-size:13px; }
-  @media (max-width:760px) { .grid, .stats, .phase, .lane { grid-template-columns:1fr; } h1 { font-size:32px; } }
+  .filters button { border:0; background:#1b1e22; color:var(--text); border-radius:999px; padding:6px 10px; margin:0 6px 8px 0; cursor:pointer; }
+  .filters button.on { background:var(--accent); color:#111; }
+  ol { padding-left:18px; } li { margin:8px 0; }
+  .phase { margin:10px 0; }
+  @media (max-width:720px) { .stats, .lane { grid-template-columns:1fr; } h1 { font-size:28px; } }
 </style>
 </head>
 <body>
 <header>
-  <div class="brand">Pow<span>folio</span> roadmap</div>
-  <nav id="nav">
-    <button data-view="overview" class="on">Overview</button>
+  <strong>Powfolio roadmap</strong>
+  <nav>
+    <button class="on" data-view="overview">Overview</button>
     <button data-view="timeline">Timeline</button>
     <button data-view="tasks">Tasks</button>
-    <button data-view="cadence">Daily / weekly</button>
     <button data-view="domain">Domain</button>
     <button data-view="security">Security</button>
     <button data-view="legal">Legal</button>
@@ -64,167 +48,121 @@
 </header>
 <main>
   <section class="view on" id="overview">
-    <div class="kicker">Scan of 5 Oct 2026</div>
-    <h1>From a working product to a launch.</h1>
-    <p class="muted">Live app is pow3folio.vercel.app. Six proof sections, public profile, auth, ops, and a print CV exist. What is left is persistence, domain, security hardening, discovery, an employer path, and the launch work around them.</p>
+    <div class="kicker">Personal plan · 7 Oct 2026</div>
+    <h1>What is built, and what still blocks launch.</h1>
+    <p class="muted">This is the working list for Powfolio, not a public pitch. Done means a visitor can use it. Left means it still fails a cold read, a security pass, or a launch.</p>
     <div class="stats">
-      <div class="stat"><b>70%</b><span>Product built</span></div>
-      <div class="stat"><b>6</b><span>Proof sections</span></div>
-      <div class="stat"><b>8 wks</b><span>To a public launch</span></div>
-      <div class="stat"><b>0</b><span>Automated tests</span></div>
+      <div class="stat"><b id="doneCount">0</b><span>Tasks checked</span></div>
+      <div class="stat"><b>70%</b><span>Product surface built</span></div>
+      <div class="stat"><b>6</b><span>Proof sections live</span></div>
+      <div class="stat"><b>8 wks</b><span>To a careful launch</span></div>
     </div>
-    <div class="grid">
-      <div class="card">
-        <h2>Where the build sits</h2>
-        <div class="lanes" id="lanes"></div>
-      </div>
-      <div class="card">
-        <h2>This week</h2>
-        <p class="muted">Finish the page someone would send to an employer. Do not open a new section.</p>
-        <div id="week"></div>
-      </div>
+    <div class="card" id="lanes"></div>
+    <div class="card" style="margin-top:12px">
+      <h2>Done already</h2>
+      <p class="muted">Auth with Google, X, GitHub, wallet and email. Dashboard with six sections. Public profile. Onchain lookup with retry. CV print page. Ops for reports, appeals, audit and MFA. Legal pages exist but still name the vercel.app address.</p>
     </div>
   </section>
-  <section class="view" id="timeline">
-    <div class="kicker">Working plan, not a promise</div>
-    <h1>Timeline to launch.</h1>
-    <div class="timeline" id="timeline"></div>
-  </section>
-  <section class="view" id="tasks">
-    <div class="kicker">Saved in this browser</div>
-    <h1>Tasks still open.</h1>
-    <div class="filters" id="filters"></div>
-    <div class="tasks" id="tasks"></div>
-  </section>
-  <section class="view" id="cadence">
-    <div class="kicker">Operating rhythm</div>
-    <h1>Daily and weekly.</h1>
-    <div class="cadence"><button data-c="daily" class="on">Daily</button><button data-c="weekly">Weekly</button></div>
-    <div id="cadence"></div>
-  </section>
+  <section class="view" id="timeline"><div class="kicker">Acceptance, not just dates</div><h1>Timeline</h1><div id="timeline"></div></section>
+  <section class="view" id="tasks"><div class="kicker">Checks stay in this browser</div><h1>Open work</h1><div class="filters" id="filters"></div><div id="tasks"></div></section>
   <section class="view" id="domain">
-    <div class="kicker">Namecheap to Vercel</div>
-    <h1>Buy and point the domain.</h1>
-    <ol class="steps">
-      <li>Create or sign in at namecheap.com. Use an email you will still have in two years.</li>
-      <li>Search <b>powfolio.xyz</b> first, then pow3folio.xyz. Prefer .xyz if the price is sane. Avoid premium listings above your budget.</li>
-      <li>Add the domain only. Decline hosting, email bundles, and SSL add-ons. Vercel issues the certificate.</li>
-      <li>Turn on WhoisGuard, Namecheap's free privacy. It hides the personal address from the public whois record.</li>
-      <li>Pay with a card in your name. Save the receipt and the renewal date. Turn on auto-renew.</li>
-      <li>Open Domain List, then Manage, then Advanced DNS. Delete parking records that Namecheap adds.</li>
-      <li>Add an A record: host <b>@</b>, value <b>76.76.21.21</b>. Add a CNAME: host <b>www</b>, value <b>cname.vercel-dns.com</b>.</li>
-      <li>In the Powfolio Vercel project, Settings, Domains, add powfolio.xyz and www.powfolio.xyz. Wait until both say valid.</li>
-      <li>Set the apex as primary. Keep the vercel.app address as a redirect so old links still work.</li>
-      <li>Replace privacy@pow3folio.vercel.app in the privacy page with an address on the new domain.</li>
+    <h1>Namecheap, then Vercel.</h1>
+    <ol>
+      <li>Account at namecheap.com with an email you still control. Save the login outside the browser.</li>
+      <li>Search powfolio.xyz first. If it is a premium listing, compare pow3folio.xyz. Do not buy hosting.</li>
+      <li>Enable WhoisGuard. It is free and hides the personal address from public whois.</li>
+      <li>Pay, turn on auto-renew, and write down the renewal date.</li>
+      <li>Domain List, Manage, Advanced DNS. Delete the parking URL redirect.</li>
+      <li>A record: host @, value 76.76.21.21. CNAME: host www, value cname.vercel-dns.com.</li>
+      <li>Vercel project pow3folio, Settings, Domains. Add the apex and www. Wait until both say valid and the certificate is issued.</li>
+      <li>Set the apex as primary. Keep vercel.app as a redirect.</li>
+      <li>Change the privacy contact from privacy@pow3folio.vercel.app to an address on the new domain.</li>
+      <li>Do not switch nameservers unless you want Vercel to own every DNS record. A and CNAME are enough.</li>
     </ol>
-    <p class="note">Tip: do not change nameservers to Vercel unless you want Vercel to host all DNS. The A plus CNAME path above is enough and easier to undo.</p>
   </section>
   <section class="view" id="security">
-    <div class="kicker">Before strangers use it</div>
-    <h1>Security still to carry out.</h1>
-    <div class="tasks" id="security"></div>
+    <h1>Security before strangers arrive.</h1>
+    <ol>
+      <li>RLS on profiles, trades, writings, community, airdrops, credentials and storage. A logged-out user must not update another row.</li>
+      <li>Service role key stays on the server. Search the client bundle before launch.</li>
+      <li>Auth redirects only allow the live domain.</li>
+      <li>Rate-limit autofill, OTP, wallet challenge and reports.</li>
+      <li>Ops MFA on every admin account. The screen exists. Confirm it is required.</li>
+      <li>Wallet login must reject a reused nonce.</li>
+      <li>Public storage only for images meant to be public. Documents linked from the CV should be unguessable.</li>
+      <li>npm audit and a dependency pass before the launch week.</li>
+    </ol>
   </section>
   <section class="view" id="legal">
-    <div class="kicker">Nigeria first, then public</div>
-    <h1>Legal steps.</h1>
-    <ol class="steps">
-      <li>Search the Powfolio name on the Nigerian trademark portal and a basic web search before spending on a mark.</li>
-      <li>If you will take money, register the business with CAC. A business name is enough to start. A limited company can wait.</li>
-      <li>Rewrite privacy and terms onto the live domain. Name the controller, the contact email, and what Supabase, Vercel, and Google store.</li>
-      <li>NDPR: say why you collect email, wallet address, and location. Location should stay optional. Keep a deletion path, which already exists.</li>
-      <li>Cookie banner already exists. Confirm it blocks non-essential tags until accepted.</li>
-      <li>Add a short content rule: users own their proof, Powfolio can remove reported abuse. The report and appeal desks already exist in ops.</li>
-      <li>Do not claim scores are verified income. Call them profile and builder scores.</li>
+    <h1>Legal, Nigeria first.</h1>
+    <ol>
+      <li>Search Powfolio on the trademark portal and the web before paying for a mark.</li>
+      <li>If money comes in, register a CAC business name. A limited company can wait.</li>
+      <li>Privacy and terms must name the live domain, the contact, and Supabase, Vercel and Google.</li>
+      <li>NDPR: why email, wallet and location are collected. Location stays optional. Deletion already exists.</li>
+      <li>Cookie banner must block non-essential tags until accepted.</li>
+      <li>Scores are profile and builder scores, not verified income.</li>
     </ol>
   </section>
   <section class="view" id="growth">
-    <div class="kicker">After the link is stable</div>
-    <h1>Social, marketing, and scale.</h1>
-    <ol class="steps">
-      <li>Publish your own profile as the first proof. The public page has to survive a cold visit.</li>
-      <li>One X thread from @cryptoadvancers: what Powfolio is, one screenshot, the link. No paid promo yet.</li>
-      <li>Seed 20 real profiles from Cryptoadvancers before a directory exists. Empty discovery looks broken.</li>
-      <li>Weekly: one public profile teardown, one product note, one community prompt.</li>
-      <li>After 50 public profiles, build the directory. Filter by skill, chain, and open-to-work.</li>
-      <li>Employer path comes after that: a shortlist and a contact, not a job board.</li>
-      <li>Scale later means backups, status page, and a second admin. Not a second product.</li>
+    <h1>Growth after the link is stable.</h1>
+    <ol>
+      <li>Your own public profile is the sample. It has to survive a cold visit.</li>
+      <li>One X thread from @cryptoadvancers after the domain resolves. No paid promo first.</li>
+      <li>Twenty real profiles from Cryptoadvancers before a directory. An empty directory looks broken.</li>
+      <li>Weekly: one profile note, one product fix, one community prompt.</li>
+      <li>Directory after those profiles. Employer shortlist after the directory.</li>
     </ol>
   </section>
 </main>
 <script>
-const lanes = [
-  ["Identity", 82], ["Public profile", 74], ["Trading", 70], ["Onchain", 62],
-  ["Writing", 68], ["Airdrops", 60], ["CV", 64], ["Ops", 72], ["Discovery", 8], ["Employer", 0]
-];
+const lanes = [["Identity",82],["Public profile",74],["Trading",70],["Onchain",62],["Writing",68],["Airdrops",60],["CV",72],["Ops",70],["Domain",5],["Discovery",8],["Employer",0],["Security pass",20]];
 const phases = [
-  ["Now", "Close the sendable profile", "Persist CV details, quiet airdrop filters, one mobile pass on scores and username."],
-  ["Week 2", "Domain and proof quality", "Namecheap domain, faster onchain lookup, real PDF download, logo fallbacks."],
-  ["Week 3-4", "Security and legal", "RLS audit, rate limits, secret check, privacy rewrite, NDPR wording, trademark search."],
-  ["Week 5-6", "Discovery", "Public directory only after 20 finished profiles exist."],
-  ["Week 7-8", "Launch", "Employer view, launch thread, support inbox, status check."]
+  ["This week","Sendable profile","CV details persist, airdrop filters return as a quiet row, mobile scores and username do not collide. Done when you can send the public link without explaining the page."],
+  ["Week 2","Domain and proof","Namecheap domain resolves with SSL. Onchain lookup usually finishes inside 10 seconds. CV file name is username PowFolio.pdf."],
+  ["Week 3-4","Security and legal","RLS checked, secrets not in the client, privacy contact is the live domain, NDPR wording is in."],
+  ["Week 5-6","Directory","Only after 20 finished public profiles. Filter by skill, chain, open to work."],
+  ["Week 7-8","Launch","Employer view is a shortlist and a contact. One launch thread. Ops inbox watched."]
 ];
 const tasks = [
-  ["build", "Save CV extras in the database, not only this browser"],
-  ["build", "Restore airdrop status as a quiet inline row"],
-  ["build", "Generate the CV as a file named username PowFolio.pdf"],
-  ["domain", "Buy powfolio.xyz on Namecheap with WhoisGuard"],
-  ["domain", "Point apex and www at Vercel and wait for SSL"],
-  ["security", "Audit Supabase RLS on profiles, trades, storage"],
-  ["security", "Confirm service role key never reaches the browser"],
-  ["security", "Rate-limit autofill, OTP, and report routes"],
-  ["security", "Turn on admin MFA for every ops account"],
-  ["legal", "Replace privacy contact with the live domain"],
-  ["legal", "NDPR wording for email, wallet, and location"],
-  ["legal", "Trademark search before paid brand work"],
-  ["growth", "Publish the founder profile as the sample"],
-  ["growth", "Seed 20 real public profiles"],
-  ["growth", "Launch thread only after the domain resolves"]
+  ["build","Persist CV extras","Year of birth, personality and super skill still live in the browser only."],
+  ["build","Airdrop filters","Status row without the old popup."],
+  ["build","CV file","Print keeps links and the bronze watermark on every page."],
+  ["domain","Buy the domain","powfolio.xyz with WhoisGuard, no hosting bundle."],
+  ["domain","DNS","A record and www CNAME, then Vercel certificate."],
+  ["security","RLS audit","Every table a visitor can read."],
+  ["security","Secret check","Service role never in the browser bundle."],
+  ["security","Rate limits","Autofill, OTP, reports."],
+  ["legal","Privacy contact","Replace the vercel.app mailbox."],
+  ["legal","NDPR note","Email, wallet, location, deletion."],
+  ["growth","Sample profile","Founder page survives a cold visit."],
+  ["growth","Twenty profiles","Before any directory work."]
 ];
-const daily = ["Check Vercel build", "One profile bug or one empty state", "Reply to any report in ops", "Note what a visitor could not understand"];
-const weekly = ["Mobile pass on one section", "Export a CV and read it", "Review onchain failures", "Post one proof note", "Update this roadmap"];
-const security = [
-  "Row level security on every public table",
-  "Storage buckets private unless the object is meant to be public",
-  "Auth redirect allowlist limited to the live domain",
-  "Wallet login checks the signed nonce",
-  "Admin routes stay behind the ops MFA already built",
-  "Dependency audit before launch",
-  "No .env values in client bundles"
-];
-const key = "powfolio-roadmap-tasks";
+const key = "powfolio-roadmap-v2";
 const saved = JSON.parse(localStorage.getItem(key) || "{}");
-function save(id, on) { saved[id] = on; localStorage.setItem(key, JSON.stringify(saved)); }
-document.getElementById("lanes").innerHTML = lanes.map(([name, n]) => `<div class="lane"><span>${name}</span><div class="bar"><i style="width:${n}%"></i></div><b>${n}</b></div>`).join("");
-document.getElementById("week").innerHTML = tasks.slice(0, 4).map(t => `<p>${t[1]}</p>`).join("");
-document.getElementById("timeline").innerHTML = phases.map(p => `<article class="phase"><div><span class="pill">${p[0]}</span></div><div><h2>${p[1]}</h2><p class="muted">${p[2]}</p></div></article>`).join("");
-const filters = ["all", "build", "domain", "security", "legal", "growth"];
+function save() { localStorage.setItem(key, JSON.stringify(saved)); paint(); }
+function paint() {
+  const done = tasks.filter(t => saved[t[1]]).length;
+  const el = document.getElementById("doneCount"); if (el) el.textContent = done + "/" + tasks.length;
+}
+document.getElementById("lanes").innerHTML = lanes.map(([n,v]) => `<div class="lane"><span>${n}</span><div class="bar"><i style="width:${v}%"></i></div><b>${v}</b></div>`).join("");
+document.getElementById("timeline").innerHTML = phases.map(p => `<article class="phase"><div class="kicker">${p[0]}</div><h2>${p[1]}</h2><p class="muted">${p[2]}</p></article>`).join("");
 let filter = "all";
-function drawTasks() {
+function draw() {
+  const filters = ["all","build","domain","security","legal","growth"];
   document.getElementById("filters").innerHTML = filters.map(f => `<button data-f="${f}" class="${f===filter?"on":""}">${f}</button>`).join("");
-  document.getElementById("tasks").innerHTML = tasks.filter(t => filter==="all" || t[0]===filter).map((t, i) => {
-    const id = t[1];
-    return `<label class="task ${saved[id]?"done":""}"><input type="checkbox" data-id="${id}" ${saved[id]?"checked":""}><span>${t[1]}</span></label>`;
-  }).join("");
+  document.getElementById("tasks").innerHTML = tasks.filter(t => filter==="all" || t[0]===filter).map(t => `<label class="task ${saved[t[1]]?"done":""}"><input type="checkbox" data-id="${t[1]}" ${saved[t[1]]?"checked":""}><span>${t[1]}<small>${t[2]}</small></span></label>`).join("");
+  paint();
 }
-drawTasks();
-document.getElementById("security").innerHTML = security.map(s => `<div class="task"><span>${s}</span></div>`).join("");
-function drawCadence(mode) {
-  const list = mode==="weekly" ? weekly : daily;
-  document.getElementById("cadence").innerHTML = `<div class="card" style="margin-top:16px">${list.map(item => `<p>${item}</p>`).join("")}</div>`;
-}
-drawCadence("daily");
+draw();
 document.body.addEventListener("click", (e) => {
   const view = e.target.dataset.view;
   if (view) {
     document.querySelectorAll("nav button").forEach(b => b.classList.toggle("on", b.dataset.view===view));
     document.querySelectorAll(".view").forEach(v => v.classList.toggle("on", v.id===view));
   }
-  if (e.target.dataset.f) { filter = e.target.dataset.f; drawTasks(); }
-  if (e.target.dataset.c) {
-    document.querySelectorAll(".cadence button").forEach(b => b.classList.toggle("on", b===e.target));
-    drawCadence(e.target.dataset.c);
-  }
-  if (e.target.dataset.id) { save(e.target.dataset.id, e.target.checked); drawTasks(); }
+  if (e.target.dataset.f) { filter = e.target.dataset.f; draw(); }
+  if (e.target.dataset.id) { saved[e.target.dataset.id] = e.target.checked; save(); }
 });
 </script>
 </body>
