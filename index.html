@@ -3,39 +3,44 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Powfolio roadmap</title>
+<title>Powfolio · Roadmap</title>
 <style>
-  :root { --bg:#0b0b0c; --surface:#141618; --line:#2c3036; --text:#f4f4f3; --muted:#9aa0a8; --soft:#7b818a; --accent:#b8863b; --good:#55c895; }
+  :root { --bg:#070708; --surface:#111214; --line:#24262b; --text:#f5f5f4; --muted:#9a9ea6; --soft:#6e737c; --accent:#c9a26a; --good:#6ee7b7; }
   * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.55 Inter, ui-sans-serif, system-ui, sans-serif; }
-  header { position:sticky; top:0; z-index:5; display:flex; gap:16px; align-items:center; justify-content:space-between; padding:14px 18px; background:rgba(11,11,12,.94); border-bottom:1px solid var(--line); }
-  nav { display:flex; gap:12px; overflow:auto; }
-  nav button { border:0; background:transparent; color:var(--muted); cursor:pointer; white-space:nowrap; }
-  nav button.on { color:var(--text); text-decoration:underline; text-underline-offset:4px; }
-  main { width:min(980px, calc(100% - 28px)); margin:0 auto; padding:24px 0 72px; }
-  h1 { font-size:34px; letter-spacing:-.04em; line-height:1.05; margin:8px 0; }
-  h2 { font-size:20px; margin:0 0 6px; }
+  html, body { margin:0; background:var(--bg); color:var(--text); font:15px/1.55 Inter, ui-sans-serif, system-ui, sans-serif; overflow-x:hidden; }
+  body::before { content:""; position:fixed; inset:0; background:radial-gradient(800px 400px at 20% -10%, rgba(201,162,106,.18), transparent 60%), radial-gradient(600px 300px at 90% 10%, rgba(110,231,183,.08), transparent 50%); pointer-events:none; z-index:0; }
+  header { position:sticky; top:0; z-index:10; display:flex; gap:16px; align-items:center; justify-content:space-between; padding:14px 20px; background:rgba(7,7,8,.85); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  nav { display:flex; gap:8px; overflow:auto; }
+  nav button { border:0; background:transparent; color:var(--muted); cursor:pointer; white-space:nowrap; padding:6px 10px; border-radius:999px; transition:.2s; }
+  nav button:hover { color:var(--text); background:rgba(255,255,255,.04); }
+  nav button.on { color:#111; background:var(--accent); }
+  main { position:relative; z-index:1; width:min(920px, calc(100% - 32px)); margin:0 auto; padding:28px 0 80px; }
+  h1 { font-size:clamp(28px,5vw,42px); letter-spacing:-.04em; line-height:1.05; margin:6px 0 10px; }
+  h2 { font-size:18px; margin:0 0 6px; }
   .muted { color:var(--muted); }
-  .view { display:none; } .view.on { display:block; }
-  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:16px 0; }
-  .stat, .card, .phase { background:var(--surface); border-radius:14px; padding:14px; }
-  .stat b { display:block; font-size:24px; }
-  .stat span, .kicker { color:var(--soft); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
-  .lane { display:grid; grid-template-columns:150px 1fr 40px; gap:8px; align-items:center; margin:8px 0; font-size:13px; }
-  .bar { height:7px; background:#23262b; border-radius:99px; overflow:hidden; } .bar i { display:block; height:100%; background:var(--accent); }
-  .task { display:flex; gap:10px; padding:10px 0; border-bottom:1px solid #23262b; }
+  .view { display:none; animation:fade .35s ease; } .view.on { display:block; }
+  @keyframes fade { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:18px 0; }
+  .stat, .card, .phase { background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:14px 16px; transition:.2s; }
+  .phase:hover { border-color:rgba(201,162,106,.4); transform:translateY(-1px); }
+  .stat b { display:block; font-size:26px; letter-spacing:-.03em; }
+  .stat span, .kicker { color:var(--soft); font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+  .lane { display:grid; grid-template-columns:140px 1fr 36px; gap:8px; align-items:center; margin:8px 0; font-size:13px; }
+  .bar { height:6px; background:#1c1e22; border-radius:99px; overflow:hidden; } .bar i { display:block; height:100%; background:linear-gradient(90deg,var(--accent),#e8d5a8); width:0; transition:width 1s cubic-bezier(.2,.8,.2,1); }
+  .task { display:flex; gap:10px; padding:10px 0; border-bottom:1px solid #1e2024; cursor:pointer; }
   .task small { display:block; color:var(--soft); }
   .task.done span { color:var(--soft); text-decoration:line-through; }
-  .filters button { border:0; background:#1b1e22; color:var(--text); border-radius:999px; padding:6px 10px; margin:0 6px 8px 0; cursor:pointer; }
+  .filters button { border:0; background:#1b1e22; color:var(--text); border-radius:999px; padding:6px 12px; margin:0 6px 8px 0; cursor:pointer; }
   .filters button.on { background:var(--accent); color:#111; }
   ol { padding-left:18px; } li { margin:8px 0; }
-  .phase { margin:10px 0; }
-  @media (max-width:720px) { .stats, .lane { grid-template-columns:1fr; } h1 { font-size:28px; } }
+  .phase { margin:12px 0; }
+  .hero-line { height:1px; background:linear-gradient(90deg,transparent,var(--accent),transparent); margin:8px 0 16px; opacity:.6; }
+  @media (max-width:720px) { .stats, .lane { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
 <header>
-  <strong>Powfolio roadmap</strong>
+  <strong style="letter-spacing:-.03em">Powfolio</strong>
   <nav>
     <button class="on" data-view="overview">Overview</button>
     <button data-view="timeline">Timeline</button>
@@ -51,12 +56,13 @@
   <section class="view on" id="overview">
     <div class="kicker">Personal plan · 16 Oct 2026</div>
     <h1>What is built, and what still blocks launch.</h1>
-    <p class="muted">This is the working list for Powfolio, not a public pitch. Done means a visitor can use it. Left means it still fails a cold read, a security pass, or a launch.</p>
+    <div class="hero-line"></div>
+    <p class="muted">Working list for Powfolio. Done means a visitor can use it. Left means it still fails a cold read, a security pass, or a launch.</p>
     <div class="stats">
       <div class="stat"><b id="doneCount">0</b><span>Tasks checked</span></div>
       <div class="stat"><b>70%</b><span>Product surface built</span></div>
       <div class="stat"><b>6</b><span>Proof sections live</span></div>
-      <div class="stat"><b>8 wks</b><span>To a careful launch</span></div>
+      <div class="stat"><b>4 wks</b><span>To a careful launch</span></div>
     </div>
     <div class="card" id="lanes"></div>
     <div class="card" style="margin-top:12px">
@@ -64,18 +70,19 @@
       <p class="muted">Auth with Google, X, GitHub, wallet and email. Dashboard with six sections. Public profile. Onchain lookup with retry. CV print page. Ops for reports, appeals, audit and MFA. Legal pages exist but still name the vercel.app address.</p>
     </div>
   </section>
-  <section class="view" id="timeline"><div class="kicker">Acceptance, not just dates</div><h1>Timeline</h1><div id="timeline"></div></section>
-  <section class="view" id="tasks"><div class="kicker">Checks stay in this browser</div><h1>Open work</h1><div class="filters" id="filters"></div><div id="tasks"></div></section>
+  <section class="view" id="timeline"><div class="kicker">Acceptance, not just dates</div><h1>Timeline</h1><div class="hero-line"></div><div id="timeline"></div></section>
+  <section class="view" id="tasks"><div class="kicker">Checks stay in this browser</div><h1>Open work</h1><div class="hero-line"></div><div class="filters" id="filters"></div><div id="tasks"></div></section>
   <section class="view" id="domain">
     <h1>Namecheap, then Vercel.</h1>
+    <div class="hero-line"></div>
     <ol>
       <li>Account at namecheap.com with an email you still control. Save the login outside the browser.</li>
       <li>Search powfolio.xyz first. If it is a premium listing, compare pow3folio.xyz. Do not buy hosting.</li>
       <li>Enable WhoisGuard. It is free and hides the personal address from public whois.</li>
       <li>Pay, turn on auto-renew, and write down the renewal date.</li>
-      <li>Domain List, Manage, Advanced DNS. Delete the parking URL redirect.</li>
+      <li>Domain List → Manage → Advanced DNS. Delete the parking URL redirect.</li>
       <li>A record: host @, value 76.76.21.21. CNAME: host www, value cname.vercel-dns.com.</li>
-      <li>Vercel project pow3folio, Settings, Domains. Add the apex and www. Wait until both say valid and the certificate is issued.</li>
+      <li>Vercel project pow3folio → Settings → Domains. Add the apex and www. Wait until both say valid and the certificate is issued.</li>
       <li>Set the apex as primary. Keep vercel.app as a redirect.</li>
       <li>Change the privacy contact from privacy@pow3folio.vercel.app to an address on the new domain.</li>
       <li>Do not switch nameservers unless you want Vercel to own every DNS record. A and CNAME are enough.</li>
@@ -83,12 +90,13 @@
   </section>
   <section class="view" id="security">
     <h1>Security before strangers arrive.</h1>
+    <div class="hero-line"></div>
     <ol>
       <li>RLS on profiles, trades, writings, community, airdrops, credentials and storage. A logged-out user must not update another row.</li>
       <li>Service role key stays on the server. Search the client bundle before launch.</li>
       <li>Auth redirects only allow the live domain.</li>
       <li>Rate-limit autofill, OTP, wallet challenge and reports.</li>
-      <li>Ops MFA on every admin account. The screen exists. Confirm it is required.</li>
+      <li>Ops MFA on every admin account. Confirm it is required.</li>
       <li>Wallet login must reject a reused nonce.</li>
       <li>Public storage only for images meant to be public. Documents linked from the CV should be unguessable.</li>
       <li>npm audit and a dependency pass before the launch week.</li>
@@ -96,6 +104,7 @@
   </section>
   <section class="view" id="legal">
     <h1>Legal, Nigeria first.</h1>
+    <div class="hero-line"></div>
     <ol>
       <li>Search Powfolio on the trademark portal and the web before paying for a mark.</li>
       <li>If money comes in, register a CAC business name. A limited company can wait.</li>
@@ -107,135 +116,57 @@
   </section>
   <section class="view" id="growth">
     <h1>Growth after the link is stable.</h1>
+    <div class="hero-line"></div>
     <ol>
       <li>Your own public profile is the sample. It has to survive a cold visit.</li>
       <li>One X thread from @cryptoadvancers after the domain resolves. No paid promo first.</li>
-      <li>Twenty real profiles from Cryptoadvancers before a directory. An empty directory looks broken.</li>
+      <li>Twenty real profiles from Cryptoadvancers before a public directory. An empty directory looks broken.</li>
       <li>Weekly: one profile note, one product fix, one community prompt.</li>
       <li>Directory after those profiles. Employer shortlist after the directory.</li>
     </ol>
   </section>
   <section class="view" id="launch">
-    <div class="kicker">Adapted from Bug Bounty Playbook + Crypto Twitter 2026 · 16 Oct 2026</div>
+    <div class="kicker">Adapted from Bug Bounty Playbook + Crypto Twitter 2026</div>
     <h1>Closed beta, X warmup, then launch.</h1>
-    <p class="muted">Solo founder, pharmacy student, first project. Private first. Do not open a public bounty. Do not treat X as a broadcast channel. Sequence protects study time.</p>
-
-    <div class="phase">
-      <div class="kicker">Why private, not public</div>
-      <h2>From the Bug Bounty Playbook</h2>
-      <p class="muted">Start with a private program. Invite specific people (10–20). Controlled volume, higher signal, fewer invalid reports. You can fix the rules while the group is small. Most programs stay private for 3–12 months. Launching public on day one is the common mistake: 200 reports, 180 noise, triage burnout, valid bugs sit in a queue.</p>
-      <p class="muted">Prerequisites before any paid program: low-hanging fruit already fixed, engineering capacity to respond, clear scope, and a budget you can actually pay. A ₦50k pool fails all of those for a public audience. Call it early access, not a bounty.</p>
-    </div>
-
-    <div class="phase">
-      <div class="kicker">1. Private closed beta</div>
-      <h2>School Telegram · 7–10 days · ₦50k hard cap</h2>
-      <ol>
-        <li>Invite ~25 people you already know. Pin the rules before anyone starts testing.</li>
-        <li>Every report needs: steps to reproduce, device + browser, and a screenshot or short video. “It broke” is rejected.</li>
-        <li>Severity: Critical (auth bypass or data leak) ₦5,000 · High (core flow broken for many) ₦3–4,000 · Medium (feature fails on mobile or data not saving) ₦2,000 · Low/UI: shoutout or nothing.</li>
-        <li>First valid reports only. Total pool ₦50k. Close on a fixed date. Acknowledge within 2 days. Pay only after you confirm the bug yourself.</li>
-        <li>Out of scope: social engineering, DoS, spam, reports with no steps, issues already fixed, feature requests.</li>
-        <li>Fix critical bugs in batches (one sitting), not one-by-one all day. Medium and low can wait until after launch if time is tight.</li>
-        <li>Later, if you want a formal channel: add /.well-known/security.txt and a short VDP page. Not required for this round.</li>
-      </ol>
-    </div>
-
-    <div class="phase">
-      <div class="kicker">2. X presence — Crypto Twitter 2026</div>
-      <h2>Blue check + 2–3 weeks of posts before the launch post</h2>
-      <p class="muted">CT trusts people over logos. Accounts that appear 2–4 weeks before launch read as farmed. Organic presence takes 6–12 months; KOL-accelerated can be 6–10 weeks. You are doing the minimum credible window.</p>
-      <ol>
-        <li>Get the blue check this week. Premium on web (~$8/mo). Basic does not include the check. Buy on web, not the app (app has extra fees).</li>
-        <li>Post 4–5 times a week from the founder account (@cryptoadvancers). Not the brand handle alone.</li>
-        <li>Content mix (CT Signal Ladder): Builder Signal (progress, scores, proof sections, screenshots) + Narrative (why scattered Web3 work is broken) + Community (replies, early profiles). Authority (KOL mentions) comes later.</li>
-        <li>Reply to 8–10 relevant posts a day (trading, airdrops, community leads, researchers). No “great project” spam. Genuine takes only.</li>
-        <li>High-performing formats to use: mechanism breakdown (how the two scores work), contrarian take (most profiles are claims), build-in-public update (what you fixed this week).</li>
-        <li>First posts are build-in-public. The launch announcement comes after the private beta closes and critical bugs are fixed.</li>
-        <li>X Score (influential followers) matters more than raw count for later partnerships. Grow it by being useful in threads, not by buying followers.</li>
-        <li>Optional later: one or two micro-KOL mentions once you have 20 real profiles. Do not buy engagement or fake followers.</li>
-      </ol>
-    </div>
-
-    <div class="phase">
-      <div class="kicker">3. Solo student sequence</div>
-      <h2>Protect study time. Batch everything.</h2>
-      <ol>
-        <li><strong>This week:</strong> Buy domain (powfolio.xyz, WhoisGuard, no hosting). Get blue check. Pin the beta rules. Finish landing page polish. Write the first 5 X posts in one sitting.</li>
-        <li><strong>Days 1–10:</strong> Private Telegram group only. Collect reports. Fix critical bugs in one or two batches. Do not context-switch every hour.</li>
-        <li><strong>Parallel:</strong> 4–5 X posts a week + daily replies. Schedule posts so school days stay clear.</li>
-        <li><strong>Launch week:</strong> One clear launch post. Share the link. Ask the 25 to post their profiles. Watch the ops inbox. Then go quiet for a full day.</li>
-        <li><strong>After launch:</strong> Weekly rhythm only — one profile note, one product fix, one community prompt. No daily firefighting. Directory only after 20 finished public profiles exist.</li>
-      </ol>
-    </div>
-
-    <div class="phase">
-      <div class="kicker">What we are not doing</div>
-      <h2>Deliberate skips</h2>
-      <ul>
-        <li>No public bug bounty. Reward is too small and triage will bury a solo founder.</li>
-        <li>No paid ads or follower buys before the first 20 real profiles.</li>
-        <li>No token talk. This is a portfolio, not a TGE.</li>
-        <li>No directory until 20 finished public profiles exist.</li>
-        <li>No daily posting once school resumes. Batch and schedule.</li>
-      </ul>
-    </div>
-
-    <div class="phase">
-      <div class="kicker">Ready-to-send</div>
-      <h2>Telegram pin</h2>
-      <p class="muted">Closed early access for Powfolio (powfolio.xyz). You’re one of ~25 people. We want real bugs before public launch.<br><br>Rules:<br>• Steps to reproduce, device/browser, and a screenshot or short video. “It broke” is not a report.<br>• Critical (auth or data leak): ₦5,000<br>• High (core flow broken): ₦3–4,000<br>• Medium (feature fails on mobile): ₦2,000<br>• Low/UI: shoutout or nothing<br><br>First valid reports only. Total pool ₦50k. Closes in 7–10 days. I’ll acknowledge within 2 days and pay only after I confirm.<br>Out of scope: spam, social engineering, reports with no steps, things already fixed.<br><br>Send reports here. Thanks for the eyes.</p>
-    </div>
-
-    <div class="phase">
-      <div class="kicker">First three X posts</div>
-      <h2>Schedule these</h2>
-      <ol>
-        <li>Building a public page for Web3 work that isn’t scattered across Discord, X, and ten apps. One link. Scores that move when you add real proof, not slogans. Still polishing. More soon.</li>
-        <li>The problem I keep seeing: traders with charts on one app, threads on another, roles in Discord. A hiring lead has to hunt. Trying to put the record in one place.</li>
-        <li>Profile Score tracks how complete the page is. Builder Score tracks how much actual evidence is on it. Both move when you add work. No vanity metrics.</li>
-      </ol>
-      <p class="muted">Reply to 8–10 relevant posts a day while these go out. That’s the part that stops the account looking new.</p>
-    </div>
+    <div class="hero-line"></div>
+    <p class="muted">Solo founder, pharmacy student, first project. Private first. Do not open a public bounty. Do not treat X as a broadcast channel.</p>
+    <div class="phase"><div class="kicker">1. Private closed beta</div><h2>School Telegram · 7–10 days · ₦50k cap</h2><p class="muted">Invite ~25 people. Pin rules. Require steps + screenshot. Critical ₦5k · High ₦3–4k · Medium ₦2k · Low: shoutout. First valid only. Close on a fixed date. Acknowledge in 2 days. Pay after you confirm.</p></div>
+    <div class="phase"><div class="kicker">2. X presence</div><h2>Blue check + 2–3 weeks of posts</h2><p class="muted">Premium on web (~$8/mo). Post 4–5 times a week from the founder account. Reply to 8–10 relevant posts a day. Mix builder signal, narrative, and community. Launch announcement comes after the private beta closes.</p></div>
+    <div class="phase"><div class="kicker">3. Solo sequence</div><h2>Protect study time</h2><p class="muted">This week: domain, blue check, pin rules, write first posts. Days 1–10: private group, fix critical bugs in batches. Parallel: scheduled posts. Launch week: one clear post, ask the 25 to share profiles, then quiet for a day. After: weekly rhythm only.</p></div>
+    <div class="phase"><div class="kicker">What we skip</div><h2>Deliberate</h2><p class="muted">No public bounty. No paid ads before 20 real profiles. No token talk. No directory until those profiles exist. No daily posting once school resumes.</p></div>
   </section>
 </main>
 <script>
 const lanes = [["Identity",82],["Public profile",74],["Trading",70],["Onchain",62],["Writing",68],["Airdrops",60],["CV",72],["Ops",70],["Domain",5],["Discovery",8],["Employer",0],["Security pass",20]];
 const phases = [
-  ["This week","Sendable profile","CV details persist, airdrop filters return as a quiet row, mobile scores and username do not collide. Done when you can send the public link without explaining the page."],
-  ["Week 2","Domain and proof","Namecheap domain resolves with SSL. Onchain lookup usually finishes inside 10 seconds. CV file name is username PowFolio.pdf."],
-  ["Week 3-4","Security and legal","RLS checked, secrets not in the client, privacy contact is the live domain, NDPR wording is in."],
-  ["Week 1","Closed beta","Private Telegram group of ~25. Rules pinned. Critical bugs fixed. Domain resolves."],
-  ["Week 2-3","X warmup","Blue check live. 4–5 posts a week + daily replies. No launch announcement yet."],
-  ["Week 4","Launch","One launch post. Beta people share their profiles. Ops inbox watched."],
+  ["This week","Domain + blue check","Buy powfolio.xyz. Get Premium. Pin beta rules. Write the first 5 posts."],
+  ["Days 1–10","Closed beta","Private Telegram of ~25. Critical bugs fixed in batches. Domain resolves."],
+  ["Week 2–3","X warmup","Blue check live. 4–5 posts a week + daily replies. No launch announcement yet."],
+  ["Week 4","Launch","One clear post. Beta people share profiles. Ops inbox watched. Then quiet for a day."]
 ];
 const tasks = [
-  ["build","Persist CV extras","Year of birth, personality and super skill still live in the browser only."],
-  ["build","Airdrop filters","Status row without the old popup."],
-  ["build","CV file","Print keeps links and the bronze watermark on every page."],
   ["domain","Buy the domain","powfolio.xyz with WhoisGuard, no hosting bundle."],
   ["domain","DNS","A record and www CNAME, then Vercel certificate."],
-  ["security","RLS audit","Every table a visitor can read."],
-  ["security","Secret check","Service role never in the browser bundle."],
-  ["security","Rate limits","Autofill, OTP, reports."],
-  ["legal","Privacy contact","Replace the vercel.app mailbox."],
-  ["legal","NDPR note","Email, wallet, location, deletion."],
   ["growth","Closed beta rules","Pin the Telegram rules and severity table before inviting."],
   ["growth","X blue check","Premium on web. Post 4–5 times a week before launch."],
-  ["growth","Twenty profiles","Before any directory work."]
+  ["growth","Twenty profiles","Real public pages before any directory."],
+  ["security","RLS audit","Every table a visitor can read."],
+  ["security","Secret check","Service role never in the browser bundle."],
+  ["legal","Privacy contact","Replace the vercel.app mailbox."]
 ];
-const key = "powfolio-roadmap-v2";
+const key = "powfolio-roadmap-v3";
 const saved = JSON.parse(localStorage.getItem(key) || "{}");
 function save() { localStorage.setItem(key, JSON.stringify(saved)); paint(); }
 function paint() {
   const done = tasks.filter(t => saved[t[1]]).length;
   const el = document.getElementById("doneCount"); if (el) el.textContent = done + "/" + tasks.length;
+  document.querySelectorAll(".bar i").forEach((b,i) => { if (lanes[i]) b.style.width = lanes[i][1] + "%"; });
 }
-document.getElementById("lanes").innerHTML = lanes.map(([n,v]) => `<div class="lane"><span>${n}</span><div class="bar"><i style="width:${v}%"></i></div><b>${v}</b></div>`).join("");
+document.getElementById("lanes").innerHTML = lanes.map(([n,v]) => `<div class="lane"><span>${n}</span><div class="bar"><i></i></div><b>${v}</b></div>`).join("");
 document.getElementById("timeline").innerHTML = phases.map(p => `<article class="phase"><div class="kicker">${p[0]}</div><h2>${p[1]}</h2><p class="muted">${p[2]}</p></article>`).join("");
 let filter = "all";
 function draw() {
-  const filters = ["all","build","domain","security","legal","growth"];
+  const filters = ["all","domain","security","legal","growth"];
   document.getElementById("filters").innerHTML = filters.map(f => `<button data-f="${f}" class="${f===filter?"on":""}">${f}</button>`).join("");
   document.getElementById("tasks").innerHTML = tasks.filter(t => filter==="all" || t[0]===filter).map(t => `<label class="task ${saved[t[1]]?"done":""}"><input type="checkbox" data-id="${t[1]}" ${saved[t[1]]?"checked":""}><span>${t[1]}<small>${t[2]}</small></span></label>`).join("");
   paint();
@@ -246,10 +177,12 @@ document.body.addEventListener("click", (e) => {
   if (view) {
     document.querySelectorAll("nav button").forEach(b => b.classList.toggle("on", b.dataset.view===view));
     document.querySelectorAll(".view").forEach(v => v.classList.toggle("on", v.id===view));
+    if (view === "overview") setTimeout(paint, 40);
   }
   if (e.target.dataset.f) { filter = e.target.dataset.f; draw(); }
   if (e.target.dataset.id) { saved[e.target.dataset.id] = e.target.checked; save(); }
 });
+setTimeout(paint, 80);
 </script>
 </body>
 </html>
