@@ -44,11 +44,12 @@
     <button data-view="security">Security</button>
     <button data-view="legal">Legal</button>
     <button data-view="growth">Growth</button>
+    <button data-view="launch">Launch plan</button>
   </nav>
 </header>
 <main>
   <section class="view on" id="overview">
-    <div class="kicker">Personal plan · 7 Oct 2026</div>
+    <div class="kicker">Personal plan · 16 Oct 2026</div>
     <h1>What is built, and what still blocks launch.</h1>
     <p class="muted">This is the working list for Powfolio, not a public pitch. Done means a visitor can use it. Left means it still fails a cold read, a security pass, or a launch.</p>
     <div class="stats">
@@ -114,6 +115,62 @@
       <li>Directory after those profiles. Employer shortlist after the directory.</li>
     </ol>
   </section>
+  <section class="view" id="launch">
+    <div class="kicker">Adapted from Bug Bounty Playbook + Crypto Twitter 2026</div>
+    <h1>Closed beta, X warmup, then launch.</h1>
+    <p class="muted">Solo founder, pharmacy student, first project. Private first. Do not open a public bounty. Do not treat X as a broadcast channel.</p>
+
+    <div class="phase">
+      <div class="kicker">1. Private closed beta (not a public bounty)</div>
+      <h2>School Telegram group · 7–10 days · ₦50k cap</h2>
+      <p class="muted">Start private. Control volume and signal. Public on day one drowns a solo founder in noise. Most programs stay private for months. Call it early access, not a formal bug bounty.</p>
+      <ol>
+        <li>Invite ~25 people you already know. Pin rules before anyone starts.</li>
+        <li>Require steps to reproduce, device/browser, and a screenshot or short video. “It broke” is not a report.</li>
+        <li>Tiers: Critical (auth/data leak) ₦5,000 · High (core flow broken) ₦3–4,000 · Medium (feature fails on mobile) ₦2,000 · Low/UI: shoutout or nothing.</li>
+        <li>First valid reports only. Close on a fixed date. Acknowledge within 2 days. Pay only after you confirm.</li>
+        <li>Out of scope: social engineering, DoS, spam, reports with no steps, issues already fixed.</li>
+        <li>Add a simple security.txt and a short policy note later if you want a VDP. For now the Telegram pin is enough.</li>
+      </ol>
+    </div>
+
+    <div class="phase">
+      <div class="kicker">2. X presence (Crypto Twitter 2026)</div>
+      <h2>Blue check + 2–3 weeks of posts before the launch post</h2>
+      <p class="muted">Accounts that appear 2–4 weeks before launch read as farmed. CT trusts people over logos. Mix builder signal with real replies. X Score (influential followers) matters more than raw count for later partnerships.</p>
+      <ol>
+        <li>Get the blue check active this week (Premium on web, ~$8/mo). Basic does not include it.</li>
+        <li>Post 4–5 times a week from the founder account. One clear problem, one screenshot, one short build update, one reply-style take.</li>
+        <li>Reply to 8–10 relevant posts a day (trading, airdrops, community leads). No “great project” spam.</li>
+        <li>Content mix: Builder Signal (progress, scores, proof sections) + Narrative (why scattered Web3 work is broken) + Community (replies and early profiles).</li>
+        <li>First posts are build-in-public, not a launch announcement. Launch post comes after the private beta closes.</li>
+        <li>Optional later: one or two micro-KOL mentions once you have 20 real profiles. Do not buy engagement.</li>
+      </ol>
+    </div>
+
+    <div class="phase">
+      <div class="kicker">3. Solo student sequence</div>
+      <h2>Protect study time. Batch everything.</h2>
+      <ol>
+        <li>This week: domain, blue check, pin the beta rules, finish landing polish.</li>
+        <li>Next 7–10 days: private group only. Fix critical bugs in batches, not one by one all day.</li>
+        <li>Parallel: 4–5 X posts a week. Write them in one sitting and schedule.</li>
+        <li>Launch week: one clear post, share the link, ask the 25 to post their profiles, then go quiet for a day.</li>
+        <li>After launch: weekly rhythm only — one profile note, one product fix, one community prompt. No daily firefighting.</li>
+      </ol>
+    </div>
+
+    <div class="phase">
+      <div class="kicker">What we are not doing</div>
+      <h2>Deliberate skips</h2>
+      <ul>
+        <li>No public bug bounty. Reward is too small and triage will bury you.</li>
+        <li>No paid ads or follower buys before the first 20 real profiles.</li>
+        <li>No token talk. This is a portfolio, not a TGE.</li>
+        <li>No directory until 20 finished public profiles exist.</li>
+      </ul>
+    </div>
+  </section>
 </main>
 <script>
 const lanes = [["Identity",82],["Public profile",74],["Trading",70],["Onchain",62],["Writing",68],["Airdrops",60],["CV",72],["Ops",70],["Domain",5],["Discovery",8],["Employer",0],["Security pass",20]];
@@ -121,8 +178,9 @@ const phases = [
   ["This week","Sendable profile","CV details persist, airdrop filters return as a quiet row, mobile scores and username do not collide. Done when you can send the public link without explaining the page."],
   ["Week 2","Domain and proof","Namecheap domain resolves with SSL. Onchain lookup usually finishes inside 10 seconds. CV file name is username PowFolio.pdf."],
   ["Week 3-4","Security and legal","RLS checked, secrets not in the client, privacy contact is the live domain, NDPR wording is in."],
-  ["Week 5-6","Directory","Only after 20 finished public profiles. Filter by skill, chain, open to work."],
-  ["Week 7-8","Launch","Employer view is a shortlist and a contact. One launch thread. Ops inbox watched."]
+  ["Week 1","Closed beta","Private Telegram group of ~25. Rules pinned. Critical bugs fixed. Domain resolves."],
+  ["Week 2-3","X warmup","Blue check live. 4–5 posts a week + daily replies. No launch announcement yet."],
+  ["Week 4","Launch","One launch post. Beta people share their profiles. Ops inbox watched."],
 ];
 const tasks = [
   ["build","Persist CV extras","Year of birth, personality and super skill still live in the browser only."],
@@ -135,7 +193,8 @@ const tasks = [
   ["security","Rate limits","Autofill, OTP, reports."],
   ["legal","Privacy contact","Replace the vercel.app mailbox."],
   ["legal","NDPR note","Email, wallet, location, deletion."],
-  ["growth","Sample profile","Founder page survives a cold visit."],
+  ["growth","Closed beta rules","Pin the Telegram rules and severity table before inviting."],
+  ["growth","X blue check","Premium on web. Post 4–5 times a week before launch."],
   ["growth","Twenty profiles","Before any directory work."]
 ];
 const key = "powfolio-roadmap-v2";
