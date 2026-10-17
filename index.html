@@ -50,6 +50,7 @@
     <button data-view="legal">Legal</button>
     <button data-view="growth">Growth</button>
     <button data-view="launch">Launch plan</button>
+    <button data-view="email">Email</button>
   </nav>
 </header>
 <main>
@@ -134,6 +135,23 @@
     <div class="phase"><div class="kicker">2. X presence</div><h2>Blue check + 2–3 weeks of posts</h2><p class="muted">Premium on web (~$8/mo). Post 4–5 times a week from the founder account. Reply to 8–10 relevant posts a day. Mix builder signal, narrative, and community. Launch announcement comes after the private beta closes.</p></div>
     <div class="phase"><div class="kicker">3. Solo sequence</div><h2>Protect study time</h2><p class="muted">This week: domain, blue check, pin rules, write first posts. Days 1–10: private group, fix critical bugs in batches. Parallel: scheduled posts. Launch week: one clear post, ask the 25 to share profiles, then quiet for a day. After: weekly rhythm only.</p></div>
     <div class="phase"><div class="kicker">What we skip</div><h2>Deliberate</h2><p class="muted">No public bounty. No paid ads before 20 real profiles. No token talk. No directory until those profiles exist. No daily posting once school resumes.</p></div>
+  </section>
+
+  <section class="view" id="email">
+    <div class="kicker">After the domain is live</div>
+    <h1>Email with Resend.</h1>
+    <div class="hero-line"></div>
+    <ol>
+      <li>Buy powfolio.xyz first. Resend needs a verified domain to send from.</li>
+      <li>Sign up at resend.com with the Powfolio Gmail (Powfolio.xyz@gmail.com is fine as the account login).</li>
+      <li>Add the domain powfolio.xyz in Resend. Copy the DNS records they give you (SPF, DKIM, DMARC).</li>
+      <li>In Namecheap Advanced DNS, add those records. Wait until Resend shows verified.</li>
+      <li>Create an API key in Resend. Copy it once.</li>
+      <li>In Vercel → pow3folio → Settings → Environment Variables, add:<br>RESEND_API_KEY = the key<br>MAIL_FROM = Powfolio <noreply@powfolio.xyz></li>
+      <li>Redeploy. Test signup OTP. You should receive the code from noreply@powfolio.xyz.</li>
+      <li>The Gmail is only for the Resend account login. Outgoing mail uses the domain, not Gmail.</li>
+    </ol>
+    <p class="muted">Templates already exist for OTP, welcome, suspension, appeal, and password reset. Once the two env vars are set, OTP and suspension send. The rest can be wired after the domain is live.</p>
   </section>
 </main>
 <script>
