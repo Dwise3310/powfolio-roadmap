@@ -49,6 +49,7 @@
     <button data-view="security">Security</button>
     <button data-view="legal">Legal</button>
     <button data-view="growth">Growth</button>
+    <button data-view="content">Content</button>
     <button data-view="launch">Launch plan</button>
     <button data-view="email">Email</button>
   </nav>
@@ -126,6 +127,53 @@
       <li>Directory after those profiles. Employer shortlist after the directory.</li>
     </ol>
   </section>
+
+  <section class="view" id="content">
+    <div class="kicker">First post Monday · 3-week calendar</div>
+    <h1>X content and white paper.</h1>
+    <div class="hero-line"></div>
+    <p class="muted">Account just got the check. Wait until Monday. First post is an introduction thread, not a launch. Motion videos are ready in Drive.</p>
+
+    <div class="phase">
+      <div class="kicker">First post · Monday</div>
+      <h2>Introduction thread</h2>
+      <p class="muted">Problem: Web3 work is scattered across X, Discord, and screenshots. Solution: one public page with scores that move on evidence. No token talk. Link in the last reply, not the main post. Pin it.</p>
+    </div>
+
+    <div class="phase">
+      <div class="kicker">Motion videos</div>
+      <h2>Drive folder ready</h2>
+      <p class="muted">Portfolio Video 1 (122 MB), Portfolio Video 2 (70 MB), powfolio 1 remake (42 MB). Use the shortest as the first native video post. Native video gets more reach than links.</p>
+    </div>
+
+    <div class="phase">
+      <div class="kicker">3-week calendar</div>
+      <h2>Mon–Fri, 1 post a day</h2>
+      <ol>
+        <li>Mon: Intro thread (problem + solution). Pin it.</li>
+        <li>Tue: Short native video from the Drive folder.</li>
+        <li>Wed: Build-in-public update. One thing you shipped this week.</li>
+        <li>Thu: Reply-heavy day. 10–15 replies in CT. One short post on a score or profile detail.</li>
+        <li>Fri: Behind-the-scenes. Pharmacy student building this. No launch yet.</li>
+        <li>Week 2 Mon: Thread on Profile Score vs Builder Score.</li>
+        <li>Week 2 Tue: Second video. Focus on the public profile view.</li>
+        <li>Week 2 Wed: Community roles and airdrops as proof.</li>
+        <li>Week 2 Thu: Reply day + one poll.</li>
+        <li>Week 2 Fri: White paper draft link in a reply only.</li>
+        <li>Week 3 Mon: Onchain section walkthrough.</li>
+        <li>Week 3 Tue: Third video or stills from the remake.</li>
+        <li>Week 3 Wed: CV download and what employers see.</li>
+        <li>Week 3 Thu: Reply day. Engage with similar projects.</li>
+        <li>Week 3 Fri: Soft close. "Still building. Public profiles are live."</li>
+      </ol>
+    </div>
+
+    <div class="phase">
+      <div class="kicker">White paper</div>
+      <h2>Full rewrite</h2>
+      <p class="muted">The old paper is outdated. Rewrite covers: what Powfolio is, who it is for, the two scores, proof sections, public vs private data, and why it is not a marketplace. No token. No revenue claims. Keep it under 8 pages.</p>
+    </div>
+  </section>
   <section class="view" id="launch">
     <div class="kicker">Adapted from Bug Bounty Playbook + Crypto Twitter 2026</div>
     <h1>Closed beta, X warmup, then launch.</h1>
@@ -163,6 +211,9 @@ const phases = [
   ["Week 4","Launch","One clear post. Beta people share profiles. Ops inbox watched. Then quiet for a day."]
 ];
 const tasks = [
+  ["growth","First X post","Monday intro thread. Problem + solution. Pin it."],
+  ["growth","3-week calendar","Mon–Fri posts. Native video in week 1."],
+  ["growth","White paper","Full rewrite. Under 8 pages. No token."],
   ["domain","Buy the domain","powfolio.xyz with WhoisGuard, no hosting bundle."],
   ["domain","DNS","A record and www CNAME, then Vercel certificate."],
   ["growth","Closed beta rules","Pin the Telegram rules and severity table before inviting."],
@@ -184,7 +235,7 @@ document.getElementById("lanes").innerHTML = lanes.map(([n,v]) => `<div class="l
 document.getElementById("timeline").innerHTML = phases.map(p => `<article class="phase"><div class="kicker">${p[0]}</div><h2>${p[1]}</h2><p class="muted">${p[2]}</p></article>`).join("");
 let filter = "all";
 function draw() {
-  const filters = ["all","domain","security","legal","growth"];
+  const filters = ["all","domain","security","legal","growth","content"];
   document.getElementById("filters").innerHTML = filters.map(f => `<button data-f="${f}" class="${f===filter?"on":""}">${f}</button>`).join("");
   document.getElementById("tasks").innerHTML = tasks.filter(t => filter==="all" || t[0]===filter).map(t => `<label class="task ${saved[t[1]]?"done":""}"><input type="checkbox" data-id="${t[1]}" ${saved[t[1]]?"checked":""}><span>${t[1]}<small>${t[2]}</small></span></label>`).join("");
   paint();
